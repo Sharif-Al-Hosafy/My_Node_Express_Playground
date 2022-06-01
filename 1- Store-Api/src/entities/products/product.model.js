@@ -18,7 +18,10 @@ const productSchema = new mongoose.Schema({
   },
   company: {
     type: String,
-    enum: ["ikea", "marcos", "liddy", "caressa"],
+    enum: {
+      values: ["ikea", "marcos", "liddy", "caressa"],
+      message: "{VALUE} is not provided",
+    },
   },
   createdAt: {
     type: Date,
