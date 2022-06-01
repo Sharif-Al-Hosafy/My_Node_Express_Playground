@@ -4,3 +4,4 @@
 ### Topics learned
 * express async error handler
 * dynamically adding data into db "population"
+* filtering and searching for specific product using regular expressions 
