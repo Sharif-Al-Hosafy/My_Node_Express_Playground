@@ -1,25 +1,23 @@
-require("dotenv").config();
-require("express-async-errors");
+require("dotenv").config(); // .env configurations
+require("express-async-errors"); // try catch replace
 
+//express app
 const express = require("express");
 const app = express();
 
 // require db
 // require routes
-
-const notFoundMiddleware = require("./middleware/not-found");
-const errorMiddleware = require("./middleware/error-handler");
+const login = require("./src/entities/user/user.router");
 
 // middleware
 app.use(express.json());
 
 // routes
-
 app.get("/", (req, res) => {
   res.send("<h1>Hello Shix</h1>");
 });
 
-// app.use("/api/v1/", ); --> start using routes
+app.use("/api/v1", login); //--> start using routes
 
 // error handling
 app.use((req, res, next) => {
