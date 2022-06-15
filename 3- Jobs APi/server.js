@@ -11,6 +11,8 @@ const dbconnect = require("./config/db/db");
 const authRoutes = require("./src/entities/users/user.router");
 const jobRoutes = require("./src/entities/jobs/jobs.route");
 
+const authMiddleware = require("./src/utils/authMiddleware");
+
 // middleware
 app.use(express.json());
 
@@ -20,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/job", jobRoutes);
+app.use("/api/v1/job", authMiddleware, jobRoutes);
 
 // error handling
 app.use((req, res, next) => {

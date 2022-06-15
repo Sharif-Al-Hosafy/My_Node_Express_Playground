@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const createError = require("../../utils/createError");
 
 const getAllJobs = (req, res) => {
-  res.send("get All Jobs");
+  res.send(req.user);
 };
 
 const getJob = (req, res) => {
