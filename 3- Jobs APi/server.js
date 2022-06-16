@@ -1,6 +1,7 @@
 require("dotenv").config();
 require("express-async-errors");
 
+//create express app
 const express = require("express");
 const app = express();
 
@@ -11,35 +12,27 @@ const dbconnect = require("./config/db/db");
 const authRoutes = require("./src/entities/users/user.router");
 const jobRoutes = require("./src/entities/jobs/jobs.route");
 
+// custom middlewares
 const authMiddleware = require("./src/utils/authMiddleware");
+const notFound = require("./src/utils/Errors/notFound");
+const errHandler = require("./src/utils/Errors/errorHandler");
 
-// middleware
+// express middlewares
 app.use(express.json());
 
 // routes
 app.get("/", (req, res) => {
   res.send("<h1>Hello Shix</h1>");
 });
-
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/job", authMiddleware, jobRoutes);
 
 // error handling
-app.use((req, res, next) => {
-  const error = new Error("Not found");
-  error.status = 404;
-  next(error);
-});
-
-app.use((error, req, res, next) => {
-  res
-    .status(error.status || 500)
-    .send({ status: "Error", message: error.message });
-});
+app.use(notFound);
+app.use(errHandler);
 
 // listening to a server
 const port = process.env.PORT || 3000;
-
 const start = async () => {
   try {
     // connectDB
@@ -49,5 +42,4 @@ const start = async () => {
     console.log(error);
   }
 };
-
 start();

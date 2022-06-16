@@ -1,6 +1,6 @@
 const User = require("./user.model");
 const jwt = require("jsonwebtoken");
-const err = require("../../utils/createError");
+const err = require("../../utils/Errors/createCustomError");
 
 const register = async (req, res) => {
   const newUser = await User.create({ ...req.body });

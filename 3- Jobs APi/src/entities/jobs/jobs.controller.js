@@ -1,4 +1,4 @@
-const createError = require("../../utils/createError");
+const createError = require("../../utils/Errors/createCustomError");
 const { findOneAndUpdate } = require("./jobs.model");
 const Job = require("./jobs.model");
 
