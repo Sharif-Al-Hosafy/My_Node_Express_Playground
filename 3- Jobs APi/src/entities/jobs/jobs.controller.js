@@ -1,4 +1,5 @@
 const createError = require("../../utils/createError");
+const { findOneAndUpdate } = require("./jobs.model");
 const Job = require("./jobs.model");
 
 const getAllJobs = async (req, res) => {
@@ -25,11 +26,35 @@ const createJob = async (req, res) => {
 };
 
 const updateJob = async (req, res) => {
-  res.send("update job");
+  const {
+    body: { company, position },
+    user: { id },
+    params: { id: jobId },
+  } = req;
+
+  if (company == "" || position == "")
+    throw createError(400, "company or position cant be empty");
+
+  const job = await Job.findOneAndUpdate(
+    { _id: jobId, createdBy: id },
+    req.body,
+    { new: true, runValidators: true }
+  );
+
+  if (!job) throw createError(401, "Job isn't found");
+  res.status(200).json({ job });
 };
 
 const deleteJob = async (req, res) => {
-  res.send("delete job");
+  const {
+    user: { id },
+    params: { id: jobId },
+  } = req;
+
+  const job = await Job.findOneAndDelete({ _id: jobId, createdBy: id });
+
+  if (!job) throw createError(401, "Job isn't found");
+  res.status(200).json({ job });
 };
 
 module.exports = {
