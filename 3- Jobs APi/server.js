@@ -5,6 +5,12 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
+// extra security packages
+const helmet = require("helmet");
+const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+const xss = require("xss-clean");
+
 // require db
 const dbconnect = require("./config/db/db");
 
