@@ -2,9 +2,9 @@
   "name": "backend-boilerplate",
   "version": "1.0.0",
   "description": "My projects starter pack",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sharif-Al-Hosafy",
