@@ -4,6 +4,7 @@
   "description": "My projects starter pack",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sharif-Al-Hosafy",
@@ -19,5 +20,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.5",
     "xss-clean": "^0.1.1"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
