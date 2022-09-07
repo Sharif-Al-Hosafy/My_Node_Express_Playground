@@ -9,7 +9,7 @@ db.connect({
   password: "allahraby1234",
 })
   .then(() => {
-    app().listen("5000", () => {
+    app().listen(5000, () => {
       console.log("server is running");
     });
   })
