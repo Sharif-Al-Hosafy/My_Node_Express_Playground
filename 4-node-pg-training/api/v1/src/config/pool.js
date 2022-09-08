@@ -8,8 +8,9 @@ class Pool {
     return this._pool.query("SELECT 1 + 1;"); // testing the connection
   }
 
-  query(sql) {
-    return this._pool.query(sql);
+  query(sql, params) {
+    // taking params in order to make the prepared sql statement in order to avoid sql injection exploit
+    return this._pool.query(sql, params);
   }
 
   close(options) {
