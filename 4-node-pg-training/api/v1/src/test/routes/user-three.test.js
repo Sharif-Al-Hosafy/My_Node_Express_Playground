@@ -1,7 +1,7 @@
 const request = require("supertest");
-const buildApp = require("../app");
-const dbConn = require("../config/pool");
-const { count } = require("../repos/user.repo");
+const buildApp = require("../../app");
+const dbConn = require("../../config/pool");
+const { count } = require("../../repos/user.repo");
 
 beforeAll(() => {
   return dbConn.connect({
