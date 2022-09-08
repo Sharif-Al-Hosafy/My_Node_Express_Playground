@@ -42,4 +42,10 @@ module.exports = {
 
     return toCamelCase(rows)[0];
   },
+
+  async count() {
+    const { rows } = await pool.query(`select count(*) from users`);
+
+    return rows[0].count;
+  },
 };
